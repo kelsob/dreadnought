@@ -1,0 +1,160 @@
+[gd_scene load_steps=11 format=3 uid="uid://yyp2mgg2608h"]
+
+[ext_resource type="Script" uid="uid://bbfpt0mwgvk2w" path="res://scripts/candle_flame.gd" id="1_nt3pp"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_83w0p"]
+size = Vector2(0.045, 0.09)
+center_offset = Vector3(0, 0.045, 0)
+
+[sub_resource type="Gradient" id="Gradient_83w0p"]
+offsets = PackedFloat32Array(0, 0.226415, 0.568733, 0.991914)
+colors = PackedColorArray(1, 0.843137, 0.529412, 1, 1, 0.74902, 0.278431, 1, 1, 0.380392, 0.0588235, 0.74902, 0.34902, 0.0392157, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nt3pp"]
+gradient = SubResource("Gradient_83w0p")
+width = 128
+height = 256
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.55, 0.78)
+fill_to = Vector2(0.92, 0.78)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5a5k"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = SubResource("GradientTexture2D_nt3pp")
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_r5a5k"]
+size = Vector2(0.2, 0.34)
+center_offset = Vector3(0, 0.15, 0)
+
+[sub_resource type="Gradient" id="Gradient_nt3pp"]
+colors = PackedColorArray(1, 0.54902, 0.156863, 0.392157, 0.196078, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r5a5k"]
+gradient = SubResource("Gradient_nt3pp")
+width = 128
+height = 256
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.7)
+fill_to = Vector2(1, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8owa"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(1, 0.431373, 0.117647, 1)
+albedo_texture = SubResource("GradientTexture2D_r5a5k")
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_nt3pp"]
+size = Vector2(0.16, 0.32)
+center_offset = Vector3(0, 0.18, 0)
+
+[node name="CandleFlame" type="Node3D"]
+script = ExtResource("1_nt3pp")
+
+[node name="Sway" type="Node3D" parent="."]
+
+[node name="Core" type="MeshInstance3D" parent="Sway"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+cast_shadow = 0
+extra_cull_margin = 0.3
+gi_mode = 0
+mesh = SubResource("QuadMesh_83w0p")
+surface_material_override/0 = SubResource("StandardMaterial3D_r5a5k")
+
+[node name="CoreCross" type="MeshInstance3D" parent="Sway"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+cast_shadow = 0
+extra_cull_margin = 0.3
+gi_mode = 0
+mesh = SubResource("QuadMesh_83w0p")
+surface_material_override/0 = SubResource("StandardMaterial3D_r5a5k")
+
+[node name="Haze" type="MeshInstance3D" parent="Sway"]
+cast_shadow = 0
+extra_cull_margin = 0.4
+gi_mode = 0
+mesh = SubResource("QuadMesh_r5a5k")
+surface_material_override/0 = SubResource("StandardMaterial3D_d8owa")
+
+[node name="HazeCross" type="MeshInstance3D" parent="Sway"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+cast_shadow = 0
+extra_cull_margin = 0.4
+gi_mode = 0
+mesh = SubResource("QuadMesh_r5a5k")
+surface_material_override/0 = SubResource("StandardMaterial3D_d8owa")
+
+[node name="Glow" type="MeshInstance3D" parent="Sway"]
+cast_shadow = 0
+extra_cull_margin = 0.4
+gi_mode = 0
+mesh = SubResource("QuadMesh_nt3pp")
+surface_material_override/0 = SubResource("StandardMaterial3D_d8owa")
+
+[node name="GlowCross" type="MeshInstance3D" parent="Sway"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+cast_shadow = 0
+extra_cull_margin = 0.4
+gi_mode = 0
+mesh = SubResource("QuadMesh_nt3pp")
+surface_material_override/0 = SubResource("StandardMaterial3D_d8owa")
+
+[node name="Smoke" type="MeshInstance3D" parent="Sway"]
+cast_shadow = 0
+extra_cull_margin = 0.4
+gi_mode = 0
+mesh = SubResource("QuadMesh_nt3pp")
+surface_material_override/0 = SubResource("StandardMaterial3D_d8owa")
+
+[node name="SmokeCross" type="MeshInstance3D" parent="Sway"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+cast_shadow = 0
+extra_cull_margin = 0.4
+gi_mode = 0
+mesh = SubResource("QuadMesh_nt3pp")
+surface_material_override/0 = SubResource("StandardMaterial3D_d8owa")
+
+[node name="LightPoint" type="Marker3D" parent="Sway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sway/LightPoint"]
+light_color = Color(1, 0.509804, 0.164706, 1)
+light_energy = 1.7
+light_indirect_energy = 0.35
+light_volumetric_fog_energy = 1.25
+light_specular = 0.28
+light_cull_mask = 4293918721
+shadow_enabled = true
+shadow_bias = 0.03
+shadow_opacity = 0.68
+shadow_blur = 2.5
+omni_range = 5.373
+omni_attenuation = 0.707
+
+[node name="Fill" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+light_color = Color(1, 0.509804, 0.164706, 1)
+light_energy = 0.12
+light_indirect_energy = 0.208
+light_volumetric_fog_energy = 1.25
+light_specular = 0.1
+light_cull_mask = 4293918721
+shadow_enabled = true
+shadow_bias = 0.03
+shadow_opacity = 0.68
+shadow_blur = 2.5
+omni_range = 7.0
+omni_attenuation = 0.45

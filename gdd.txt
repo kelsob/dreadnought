@@ -1,0 +1,381 @@
+﻿Dreadnought
+1. High Concept
+A first-person survival/operations game where the player inhabits the cockpit of a gigantic, heavily armed combat dreadnought.
+The player does not operate the machine through conventional videogame controls. They physically operate the machine through its cockpit systems.
+The central fantasy is being one human trapped inside an enormous, ancient, complicated war machine.
+The player is not an omniscient commander looking at a HUD and issuing abstract commands. They are the pilot/operator sitting in a seat, looking around the cockpit, physically manipulating controls, monitoring systems, and trying to keep the machine functioning.
+The machine should feel extremely large, heavy, slow, powerful, and difficult to operate.
+The cockpit is therefore a major part of the game rather than simply a visual framing device.
+________________
+
+
+2. Perspective
+The game is played entirely from the first-person perspective of the pilot.
+The player's physical position inside the cockpit is fixed.
+The player cannot freely walk around the cockpit.
+The player's "body" remains seated in the pilot's position, while their head can turn within a limited range.
+Looking around should feel like turning a human head while seated inside a machine, rather than controlling a free-floating camera.
+The player should be able to look:
+* Left
+* Right
+* Up
+* Down
+but within believable physical limits.
+The cockpit surrounds the player and contains the physical controls required to operate the dreadnought.
+________________
+
+
+3. The Dreadnought
+The dreadnought is a massive combat machine that moves on two enormous mechanical legs.
+It is closer to a walking industrial fortress than a conventional vehicle.
+Its scale should be emphasized constantly.
+The machine is:
+* Extremely large
+* Heavy
+* Mechanically complex
+* Slow to respond
+* Powerful
+* Difficult to operate
+* Capable of carrying substantial weaponry and equipment
+The player should always feel that there is an enormous amount of machinery between their actions and the outside world.
+A lever moving inside the cockpit may ultimately cause a gigantic leg outside the machine to move hundreds of tonnes of machinery.
+________________
+
+
+4. Core Control Philosophy
+The most important design principle is:
+The player does not tell the machine what to do. The player operates the machine.
+There should be as little abstraction as possible.
+For locomotion in particular, there is no simple:
+* "Move forward"
+* "Move backward"
+* "Turn left"
+* "Turn right"
+input.
+Instead, the player manually controls the two legs.
+Every individual step is commanded through a physical control.
+The intention is for movement to feel more like operating a complicated mechanical machine than controlling a character.
+________________
+
+
+5. Leg Controls
+The dreadnought has two massive primary controls:
+* Left leg control
+* Right leg control
+These are enormous physical levers located within reach of the pilot.
+Each lever moves along a forward/backward axis.
+Conceptually, each lever has three states:
+FORWARD
+   |
+NEUTRAL
+   |
+BACKWARD
+
+
+The player can manipulate each leg independently.
+The levers are not conventional throttles.
+They represent the position/command of the corresponding leg.
+________________
+
+
+6. Standing / Neutral
+When the game begins, both legs are in their neutral stationary positions.
+LEFT  = NEUTRAL
+RIGHT = NEUTRAL
+
+
+The dreadnought is stationary.
+Neutral represents a leg being in its stable planted position relative to the body of the machine.
+The player can remain stationary indefinitely with both legs neutral.
+There is no need for a conventional "stop" button.
+________________
+
+
+7. Forward Locomotion
+Forward movement is manually constructed one step at a time.
+To begin moving forward, the player moves the left leg control forward.
+The left leg takes a forward step.
+The right leg remains neutral.
+The player then moves the right leg control forward.
+The right leg takes a forward step, while the left leg returns to its neutral position.
+The player then repeats the process.
+Conceptually:
+START
+
+
+L = NEUTRAL
+R = NEUTRAL
+
+
+L = FORWARD
+R = NEUTRAL
+
+
+L = NEUTRAL
+R = FORWARD
+
+
+L = FORWARD
+R = NEUTRAL
+
+
+L = NEUTRAL
+R = FORWARD
+
+
+Forward movement therefore consists of an alternating sequence of individual leg commands.
+There is no automatic walking cycle.
+The player must continue operating the controls to continue walking.
+The rhythm of the controls should become something the player physically learns.
+________________
+
+
+8. Backward Locomotion
+Backward movement uses exactly the same fundamental system.
+Instead of moving each leg forward, the player moves each leg backward.
+Conceptually:
+START
+
+
+L = NEUTRAL
+R = NEUTRAL
+
+
+L = BACKWARD
+R = NEUTRAL
+
+
+L = NEUTRAL
+R = BACKWARD
+
+
+L = BACKWARD
+R = NEUTRAL
+
+
+L = NEUTRAL
+R = BACKWARD
+
+
+Again, every step is individually commanded.
+________________
+
+
+9. Automatic Leg Reset
+The controls have an important relationship.
+When the player commands the currently neutral leg in the same direction as the previous step, the other leg returns to neutral.
+For example:
+L = FORWARD
+R = NEUTRAL
+
+
+The player then commands:
+R = FORWARD
+
+
+The previous left-leg position is reset to neutral:
+L = NEUTRAL
+R = FORWARD
+
+
+This creates the alternating gait.
+The player is therefore constantly switching between the two controls.
+The controls themselves should physically reflect this relationship.
+The player should be able to feel and see the controls moving between their forward, neutral, and backward positions.
+________________
+
+
+10. Turning
+Turning uses the exact same two controls.
+There is no requirement for lateral controls.
+Instead, the player causes rotation by commanding the legs in opposite directions.
+For example, one direction of rotation is:
+LEFT  = FORWARD
+RIGHT = BACKWARD
+
+
+The opposing direction is:
+RIGHT = FORWARD
+LEFT  = BACKWARD
+
+
+The difference in movement between the two legs causes the dreadnought's body to pivot.
+A simplified right-turn sequence can therefore be:
+LEFT FORWARD
+RIGHT BACKWARD
+LEFT FORWARD
+RIGHT BACKWARD
+...
+
+
+A left-turn sequence is the reverse:
+RIGHT FORWARD
+LEFT BACKWARD
+RIGHT FORWARD
+LEFT BACKWARD
+...
+
+
+This allows the entire fundamental locomotion system to remain contained within the two leg controls.
+The player is effectively steering the machine by deciding where each leg goes rather than operating a separate steering mechanism.
+________________
+
+
+11. Turning While Moving
+Turning does not have to be restricted to stationary pivots.
+Because the player controls each leg individually, they can create different movement patterns to alter the machine's trajectory.
+The eventual system can support:
+* Straight forward movement
+* Straight backward movement
+* Gradual directional changes
+* Tight turns
+* Stationary pivots
+* Precise positioning
+All of these emerge from the relationship between the two leg controls.
+There should not need to be a separate abstract movement system layered over the leg controls.
+________________
+
+
+12. Step Size
+The eventual locomotion system should allow the player to control the magnitude of an individual step.
+The further the player moves a leg control from neutral, the greater the commanded movement of that leg.
+A small movement of the control should produce a small step.
+A large movement should produce a large step.
+This allows the player to make precise adjustments rather than being restricted to fixed-size steps.
+For example:
+Small lever movement
+→ small positional adjustment
+
+
+Large lever movement
+→ large stride
+
+
+This is important because the dreadnought should not feel like it moves in discrete videogame-sized chunks.
+The player should be able to carefully position the machine.
+________________
+
+
+13. Physicality of the Controls
+The leg controls should feel enormous and mechanical.
+They are not tiny joysticks.
+They are substantial pieces of machinery connected conceptually to the gigantic legs of the dreadnought.
+The player should physically manipulate them.
+Eventually, the controls should be capable of communicating information through:
+* Position
+* Resistance
+* Movement
+* Mechanical feedback
+* Sound
+* Vibration
+The player should be able to develop an understanding of the machine through the controls themselves.
+The goal is for the cockpit to feel like a real machine rather than a collection of videogame buttons.
+________________
+
+
+14. Cockpit Philosophy
+The cockpit should be heavily diegetic.
+Important information should ideally be represented by physical objects, mechanical indicators, instruments, lights, gauges, displays, or other elements that plausibly exist inside the machine.
+The cockpit is effectively the player's interface to the entire game.
+There should be minimal reliance on conventional videogame HUD elements.
+The player should look around the cockpit to operate things.
+Controls should have physical locations.
+Different systems should occupy different parts of the cockpit.
+The player should eventually need to physically look toward and interact with different pieces of equipment.
+________________
+
+
+15. The Player's Relationship With the Machine
+The player is not the machine.
+The player is its operator.
+This distinction is important.
+The dreadnought should have its own physical limitations and mechanical behavior.
+The player's job is to understand those limitations and operate within them.
+The machine may eventually have problems involving:
+* Mechanical damage
+* System failures
+* Power
+* Repairs
+* Weapons
+* Environmental hazards
+* Other operational complications
+The player should deal with these problems from inside the cockpit rather than through abstract menus.
+________________
+
+
+16. Combat
+The dreadnought is fundamentally a combat machine.
+Its enormous size and heavy mechanical construction make it capable of carrying significant weapons.
+Combat should preserve the same design philosophy as locomotion.
+The player should eventually operate weapons through physical cockpit controls rather than simply selecting weapons from a HUD.
+Weapons and combat systems should feel like machinery the player has to operate.
+The player should have to manage the machine while simultaneously dealing with external threats.
+The dreadnought's physical scale should make combat feel consequential.
+A weapon firing should feel like an enormous mechanical event rather than an FPS weapon firing from the player's camera.
+________________
+
+
+17. Survival / Operations
+The game is not intended to be purely about combat.
+A major part of the experience is operating and maintaining the dreadnought.
+The machine is enormous and complicated.
+Keeping it functioning should eventually become a central part of gameplay.
+The player may need to:
+* Diagnose problems
+* Operate machinery
+* Repair damaged systems
+* Manage resources
+* Respond to failures
+* Maintain weapons
+* Maintain locomotion
+* Deal with environmental conditions
+* Make decisions about which systems to prioritize
+The cockpit should therefore gradually become a familiar workspace that the player learns to operate.
+________________
+
+
+18. Atmosphere
+The intended tone is industrial, oppressive, isolated, and mechanical.
+The player should feel small compared with the machine they inhabit.
+The dreadnought should not feel sleek or futuristic in the conventional science-fiction sense.
+It should feel like a gigantic piece of machinery that requires human beings to operate it.
+Controls should have weight.
+Movement should have inertia.
+Machines should make noise.
+Systems should have physical consequences.
+The cockpit should feel enclosed and somewhat claustrophobic despite the enormous scale of the machine outside.
+________________
+
+
+19. The Core Player Experience
+The long-term goal is for the player to develop a physical understanding of their machine.
+At the beginning, operating it should feel complicated.
+Eventually, the player should develop an intuitive rhythm.
+For locomotion, the player might initially think:
+Left forward. Right forward. Left forward. Right forward.
+Eventually it should become muscle memory.
+The same principle should apply to the rest of the cockpit.
+The player should gradually become familiar with:
+* Where controls are
+* What different sounds mean
+* How the legs respond
+* How quickly the machine turns
+* How far a step will carry it
+* How the machine behaves when damaged
+* How to operate its weapons
+* How to respond to failures
+The fantasy is not simply piloting a giant robot.
+It is learning how to operate a gigantic machine.
+________________
+
+
+20. Prototype Direction
+The earliest prototype should establish the fundamental experience of being physically present inside the cockpit.
+The initial focus is intentionally extremely small:
+* First-person fixed cockpit position
+* Restricted head movement
+* Physical cockpit space
+* Two physical leg-control levers
+* Basic interaction with those controls
+The eventual locomotion system described above is the long-term design target, but it does not need to exist in the earliest prototype.
+The project should grow outward from the cockpit and its physical interaction model rather than beginning with conventional character movement and adding a cockpit around it.

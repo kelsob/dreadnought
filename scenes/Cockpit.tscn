@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://c8q3c8mk4ekda"]
+
+[ext_resource type="PackedScene" uid="uid://c6nhih4uypkys" path="res://assets/glbs/Cockpit.glb" id="1_atm1w"]
+[ext_resource type="Script" uid="uid://c6fnr6rei8vw0" path="res://scripts/cockpit.gd" id="2_rcecj"]
+[ext_resource type="Script" uid="uid://devmfreo25jji" path="res://scripts/throttle_lever.gd" id="2_wi8rl"]
+[ext_resource type="PackedScene" uid="uid://yyp2mgg2608h" path="res://scenes/CandleFlame.tscn" id="4_3xroh"]
+[ext_resource type="Script" path="res://scripts/hanging_cloth.gd" id="5_458wm"]
+[ext_resource type="Script" uid="uid://jge6a84w2u2" path="res://scripts/radar_display.gd" id="5_q271u"]
+[ext_resource type="Material" uid="uid://bevo14ii7b2pe" path="res://shaders/hanging_cloth.tres" id="6_4rsga"]
+[ext_resource type="FontFile" uid="uid://cv3fwsccdgmyf" path="res://assets/fonts/PopplFrakturCAT.ttf" id="6_7mvch"]
+[ext_resource type="PackedScene" uid="uid://0732i3ycdorv" path="res://assets/glbs/wall-assembled.glb" id="7_lvdtc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mvch"]
+transparency = 1
+albedo_color = Color(0.0941176, 0.137255, 0.164706, 0.156863)
+roughness = 0.1
+refraction_enabled = true
+refraction_scale = 0.03
+
+[node name="Cockpit" instance=ExtResource("1_atm1w")]
+script = ExtResource("2_rcecj")
+
+[node name="Handle" parent="Env/ThrottleLeft" index="0" node_paths=PackedStringArray("paired_lever")]
+transform = Transform3D(0.320613, 0, 0.94721, 0, 1, 0, -0.94721, 0, 0.320613, 0, 0, 0)
+script = ExtResource("2_wi8rl")
+min_angle_degrees = -28.0
+max_angle_degrees = 72.0
+resistance = 40.0
+paired_lever = NodePath("../../ThrottleRight/Handle_001")
+
+[node name="Handle_001" parent="Env/ThrottleRight" index="0" node_paths=PackedStringArray("paired_lever")]
+transform = Transform3D(0.976672, 0, -0.214735, 0, 1, 0, 0.214735, 0, 0.976672, 0, 0, 0)
+script = ExtResource("2_wi8rl")
+min_angle_degrees = -28.0
+max_angle_degrees = 72.0
+resistance = 40.0
+paired_lever = NodePath("../../ThrottleLeft/Handle")
+
+[node name="CandleFlame" parent="CandleEmpty/candle_wick_1_1/Object_6" index="0" instance=ExtResource("4_3xroh")]
+transform = Transform3D(1, -2.98023e-08, 7.10543e-15, 2.98023e-08, 1, 0, 0, 1.42109e-14, 1, 0, 0.02, 0)
+
+[node name="CandleFlame" parent="CandleEmpty_001/candle_wick_2_3/Object_10" index="0" instance=ExtResource("4_3xroh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+
+[node name="CandleFlame" parent="CandleEmpty_002/candle_wick_3_5/Object_14" index="0" instance=ExtResource("4_3xroh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 1.77636e-15, 2.84217e-14, 1, 0, 0.02, 0)
+
+[node name="CandleFlame" parent="CandleEmpty_003/candle_wick_1_1_001/Object_6_001" index="0" instance=ExtResource("4_3xroh")]
+transform = Transform3D(1, -2.98023e-08, -1.42109e-14, 2.98023e-08, 1, 3.55271e-15, 0, -3.55271e-15, 1, 0, 0.02, 0)
+
+[node name="CandleFlame" parent="CandleEmpty_004/candle_wick_2_3_001/Object_10_001" index="0" instance=ExtResource("4_3xroh")]
+transform = Transform3D(1, 2.98023e-08, 1.42109e-14, 0, 1, -2.84217e-14, -1.42109e-14, -5.68434e-14, 1, 0, 0.02, 0)
+
+[node name="CandleFlame" parent="CandleEmpty_005/candle_wick_3_5_001/Object_14_001" index="0" instance=ExtResource("4_3xroh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+
+[node name="RadarDome" parent="RadarPanel" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_7mvch")
+
+[node name="RadarFace" parent="RadarPanel" index="1"]
+script = ExtResource("5_q271u")
+emission_energy = 40.0
+fill_alpha = 0.25
+ring_count = 6
+ring_width = 0.001
+outer_width = 0.032
+radial_count = 6
+sub_radial_count = 6
+sub_radial_width = 0.001
+sweep_seconds = 4.8
+sweep_width = 0.05
+sweep_trail = 0.25
+mech_size = 0.05
+color = Color(0.941176, 0.54902, 0.360784, 1)
+ground_color = Color(0, 0, 0, 0.509804)
+ground_fill = 0.185
+open_lift = 0.0
+shore_softness = 0.6
+angle_font = ExtResource("6_7mvch")
+angle_step_degrees = 45
+diagram_scale = 0.88
+label_radius = 0.93
+
+[node name="wall-assembled" parent="." index="14" instance=ExtResource("7_lvdtc")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.19209e-07, 2.2, -2.6)
+visible = false
+
+[node name="Empty" parent="." index="15"]
+script = ExtResource("5_458wm")
+
+[node name="Tapestry" parent="Empty" index="0"]
+surface_material_override/0 = ExtResource("6_4rsga")
+
+[node name="Empty_001" parent="." index="16"]
+script = ExtResource("5_458wm")
+
+[node name="Tapestry_001" parent="Empty_001" index="0"]
+surface_material_override/0 = ExtResource("6_4rsga")

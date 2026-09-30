@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bevo14ii7b2pe"]
+
+[ext_resource type="Shader" path="res://shaders/hanging_cloth.gdshader" id="1_shader"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_shader")
+shader_parameter/albedo_color = Color(0.45, 0.18, 0.14, 1)
+shader_parameter/roughness = 0.88
+shader_parameter/metallic = 0.0
+shader_parameter/sway = Vector2(0, 0)
+shader_parameter/heave = 0.0
+shader_parameter/jostle = 0.0
+shader_parameter/jostle_phase = 0.0
+shader_parameter/hang_length = 1.4
+shader_parameter/hang_width = 0.8
+shader_parameter/pin_y = 0.0
+shader_parameter/flutter = 0.031
+shader_parameter/fold = 0.145
+shader_parameter/pleat_count = 3.0
+shader_parameter/bunch = 0.045
+shader_parameter/puff = 0.035
+shader_parameter/sway_bunch = 0.28
+shader_parameter/cloth_time = 0.0
+shader_parameter/cloth_seed = 0.0

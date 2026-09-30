@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgxwd43d1mo8s"]
+
+[ext_resource type="Script" uid="uid://t226t5tu6j5p" path="res://scripts/world.gd" id="1_c01mt"]
+[ext_resource type="Script" uid="uid://dxmaqw7lurm4r" path="res://scripts/head_look.gd" id="1_elqb8"]
+[ext_resource type="Texture2D" uid="uid://dmtrwfqiqg8pi" path="res://assets/world/world.png" id="2_nxtc6"]
+[ext_resource type="PackedScene" uid="uid://c8q3c8mk4ekda" path="res://scenes/Cockpit.tscn" id="2_rvslj"]
+[ext_resource type="Script" uid="uid://cqgtyxslebb3m" path="res://scripts/software_cursor.gd" id="3_0bbpv"]
+[ext_resource type="Script" uid="uid://oncckt22ipdd" path="res://scripts/machine_motion.gd" id="4_rarhs"]
+
+[node name="Main" type="Node3D"]
+
+[node name="World" type="Node" parent="."]
+script = ExtResource("1_c01mt")
+start_cell = Vector2i(17, 15)
+start_heading_degrees = 180.0
+map = ExtResource("2_nxtc6")
+
+[node name="MachineMotion" type="Node" parent="."]
+script = ExtResource("4_rarhs")
+turn_duration = 4.0
+leg_spacing = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.8, 0.3)
+script = ExtResource("1_elqb8")
+max_left_right = 4.0
+max_up = 48.0
+max_down = 8.0
+
+[node name="Cockpit" parent="." instance=ExtResource("2_rvslj")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Cursor" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_0bbpv")
+grab_move_scale = 0.05
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Cursor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
