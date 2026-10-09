@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgxwd43d1mo8s"]
+[gd_scene format=3 uid="uid://cgxwd43d1mo8s"]
 
 [ext_resource type="Script" uid="uid://t226t5tu6j5p" path="res://scripts/world.gd" id="1_c01mt"]
 [ext_resource type="Script" uid="uid://dxmaqw7lurm4r" path="res://scripts/head_look.gd" id="1_elqb8"]
@@ -7,31 +7,41 @@
 [ext_resource type="Script" uid="uid://cqgtyxslebb3m" path="res://scripts/software_cursor.gd" id="3_0bbpv"]
 [ext_resource type="Script" uid="uid://oncckt22ipdd" path="res://scripts/machine_motion.gd" id="4_rarhs"]
 
-[node name="Main" type="Node3D"]
+[sub_resource type="Environment" id="Environment_tliot"]
+background_mode = 1
+background_color = Color(0.06576841, 0.0982858, 0.14305496, 1)
+ssao_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.12298488, 0.12298488, 0.12298488, 1)
 
-[node name="World" type="Node" parent="."]
+[node name="Main" type="Node3D" unique_id=2136380503]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=449637189]
+environment = SubResource("Environment_tliot")
+
+[node name="World" type="Node" parent="." unique_id=2121644478]
 script = ExtResource("1_c01mt")
 start_cell = Vector2i(17, 15)
 start_heading_degrees = 180.0
 map = ExtResource("2_nxtc6")
 
-[node name="MachineMotion" type="Node" parent="."]
+[node name="MachineMotion" type="Node" parent="." unique_id=1390452496]
 script = ExtResource("4_rarhs")
 turn_duration = 4.0
 leg_spacing = 5.0
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=925135530]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2.8, 0.3)
 script = ExtResource("1_elqb8")
 max_left_right = 4.0
 max_up = 48.0
 max_down = 8.0
 
-[node name="Cockpit" parent="." instance=ExtResource("2_rvslj")]
+[node name="Cockpit" parent="." unique_id=1651451919 instance=ExtResource("2_rvslj")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1164512459]
 
-[node name="Cursor" type="Control" parent="CanvasLayer"]
+[node name="Cursor" type="Control" parent="CanvasLayer" unique_id=1509249186]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,7 +58,7 @@ mouse_filter = 2
 script = ExtResource("3_0bbpv")
 grab_move_scale = 0.05
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Cursor"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Cursor" unique_id=2137411636]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
